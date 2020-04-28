@@ -31,7 +31,7 @@ public class Login extends HttpServlet{
 		Cookie cookie;
 		try {
 			if (!rs.wasNull()) {
-				cookie = new Cookie("USER_ID",Coder.encryptedPassword(String.valueOf(rs.getInt("USER_ID"))));
+				cookie = new Cookie("USER_ID",Coder.encryptedId(rs.getInt("USER_ID")));
 				cookie.setMaxAge(3600);
 				response.addCookie(cookie);
 				
@@ -47,7 +47,7 @@ public class Login extends HttpServlet{
 			}else{
 				response.getWriter().append("用戶名或密碼錯誤");
 			}
-		} catch (SQLException | NoSuchAlgorithmException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 		}
 	}
@@ -58,10 +58,9 @@ public class Login extends HttpServlet{
 	}
 
 	public ResultSet login(String account, String password) {
-		UserDao userDao = new UserDao();
 		ResultSet rs;
 		try {
-			rs = userDao.login(account, Coder.encryptedPassword(password));
+			rs = UserDao.login(account, Coder.encryptedPassword(password));
 			return rs;
 		} catch (NoSuchAlgorithmException e) {
 			return null;

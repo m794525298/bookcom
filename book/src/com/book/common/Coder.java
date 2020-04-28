@@ -13,6 +13,15 @@ public class Coder {
 		return new String(md5.digest());
 	}
 	
+	public static String encryptedId(int id){
+		return String.valueOf(id*10078+9);
+		
+	}
+	
+	public static String decryptedId(String id) {
+		return String.valueOf((Integer.valueOf(id)-9)/10078);
+	}
+	
 	public static String textToBase64(String str, String charsetName)
             throws UnsupportedEncodingException{
         if (charsetName == null) throw new NullPointerException();

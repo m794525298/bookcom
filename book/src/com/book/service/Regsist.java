@@ -55,10 +55,9 @@ public class Regsist extends HttpServlet{
 
 
 	public int regsist(String account, String password,String email) {
-		UserDao userDao = new UserDao();
 		int code;
 		try {
-			code = userDao.regsist(account, Coder.encryptedPassword(password), email);
+			code = UserDao.regsist(account, Coder.encryptedPassword(password), email);
 			return code;
 		} catch (NoSuchAlgorithmException e) {
 			return 1;

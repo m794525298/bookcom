@@ -5,17 +5,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.book.common.Coder;
 import com.book.common.DataBaseConnector;
 
 public class UserDao {
-	Statement st;
+	static Statement st;
 	
-	public UserDao(){
-		super();
+	static{
+		
 		st = DataBaseConnector.getStatement();
 	}
 	
-	public ResultSet login(String account,String password) {
+
+	
+	public static ResultSet login(String account,String password) {
 		try {
 			ResultSet rs = st.executeQuery("Select * from user where USER_ACCOUNT =" + account + "USER_PASSWORD = " + password + ";");
 			return rs;
@@ -25,7 +28,17 @@ public class UserDao {
 		
 	}
 	
-	public int regsist(String account,String password,String email) {
+	public static ResultSet getUser(String id) {
+			try {
+				ResultSet rs = st.executeQuery("Select * from user where USER_Id =" + Coder.decryptedId(id) +  ";");
+				return rs;
+			} catch (SQLException e) {
+				return null;
+			}
+		
+	}
+	
+	public static int regsist(String account,String password,String email) {
 		//0:成功 1:數据庫錯誤 2:已存在用戶名 3:邮箱已注册
 		try {
 			ResultSet rs = st.executeQuery("Select USER_ID from user where USER_ACCOUNT =" + account +";");
