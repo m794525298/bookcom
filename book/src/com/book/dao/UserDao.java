@@ -7,12 +7,12 @@ import java.sql.Statement;
 
 import com.book.common.Coder;
 import com.book.common.DataBaseConnector;
+import com.book.pojo.UserBean;
 
 public class UserDao {
 	static Statement st;
 	
 	static{
-		
 		st = DataBaseConnector.getStatement();
 	}
 	
@@ -20,17 +20,16 @@ public class UserDao {
 	
 	public static ResultSet login(String account,String password) {
 		try {
-			ResultSet rs = st.executeQuery("Select * from user where USER_ACCOUNT =" + account + "USER_PASSWORD = " + password + ";");
+			ResultSet rs = st.executeQuery("Select * from user where USER_ACCOUNT =" + account + "And USER_PASSWORD = " + password + ";");
 			return rs;
 		} catch (SQLException e) {
 			return null;
 		}
-		
 	}
 	
-	public static ResultSet getUser(String id) {
+	public static ResultSet getUser(String id,String account) {
 			try {
-				ResultSet rs = st.executeQuery("Select * from user where USER_Id =" + Coder.decryptedId(id) +  ";");
+				ResultSet rs = st.executeQuery("Select * from user where USER_ID =" + id +  "And USER_ACCOUNT = " + account + ";");
 				return rs;
 			} catch (SQLException e) {
 				return null;
@@ -58,4 +57,28 @@ public class UserDao {
 		}
 	}
 	
+	public static boolean validUser(String id,String account) {
+		try {
+			ResultSet rs = st.executeQuery("Select USER_NICKNAME from user where USER_ID =" + id + "And USER_ACCOUNT = " + account + ";");
+			return !rs.wasNull();
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+	
+	public static int updatedUserData(UserBean user) {
+		//0:成功 1:數据庫錯誤
+		try {
+			String sql="updated user set USER_NICKNAME = ? And USER_ICON = ? where USER_ID = ?";//sql语句
+			PreparedStatement pstmt=DataBaseConnector.getPreparedStatement(sql);
+			pstmt.setString(1 , user.getNickname());
+			pstmt.setString(2 , user.getIcon());
+			pstmt.setString(3 , user.getId());
+			int res = pstmt.executeUpdate();
+			pstmt.close();
+			return (res > 0)? 0 : 1 ;
+		} catch (SQLException e) {
+			return 1;
+		}
+	}
 }
