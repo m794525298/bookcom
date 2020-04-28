@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.book.common.Coder;
 import com.book.common.DataBaseConnector;
 import com.book.pojo.UserBean;
 
@@ -28,12 +27,12 @@ public class UserDao {
 	}
 	
 	public static ResultSet getUser(String id,String account) {
-			try {
-				ResultSet rs = st.executeQuery("Select * from user where USER_ID =" + id +  "And USER_ACCOUNT = " + account + ";");
-				return rs;
-			} catch (SQLException e) {
-				return null;
-			}
+		try {
+			ResultSet rs = st.executeQuery("Select * from user where USER_ID =" + id +  "And USER_ACCOUNT = " + account + ";");
+			return rs;
+		} catch (SQLException e) {
+			return null;
+		}
 		
 	}
 	
@@ -69,7 +68,7 @@ public class UserDao {
 	public static int updatedUserData(UserBean user) {
 		//0:成功 1:數据庫錯誤
 		try {
-			String sql="updated user set USER_NICKNAME = ? And USER_ICON = ? where USER_ID = ?";//sql语句
+			String sql="updated user set USER_NICKNAME = ? And USER_ICON = ? where USER_ID = ?;";//sql语句
 			PreparedStatement pstmt=DataBaseConnector.getPreparedStatement(sql);
 			pstmt.setString(1 , user.getNickname());
 			pstmt.setString(2 , user.getIcon());

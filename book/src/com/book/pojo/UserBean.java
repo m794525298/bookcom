@@ -1,7 +1,5 @@
 package com.book.pojo;
 
-import com.book.common.Coder;
-
 public class UserBean {
 	private String id;
 	private String icon;
