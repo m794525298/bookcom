@@ -1,5 +1,13 @@
 package com.book.dao;
 
-public class CommentDao {
+import java.sql.Statement;
 
+import com.book.common.DataBaseConnector;
+
+public class CommentDao {
+static Statement st;
+	
+	static{
+		st = DataBaseConnector.getStatement();
+	}
 }

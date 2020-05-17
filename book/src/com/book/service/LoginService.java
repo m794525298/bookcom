@@ -1,8 +1,9 @@
 package com.book.service;
 
-import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import com.alibaba.fastjson.JSONObject;
 import com.book.Interface.Login;
 import com.book.common.Coder;
 import com.book.dao.UserDao;
@@ -14,12 +15,20 @@ public class LoginService implements Login{
         super();
     }
 
-	public ResultSet login(String account, String password) {
+	public JSONObject login(String account, String password) {
 		ResultSet rs;
 		try {
-			rs = UserDao.login(account, Coder.encryptedPassword(password));
-			return rs;
-		} catch (NoSuchAlgorithmException e) {
+			rs = UserDao.login(account, Coder.encrypted(password));
+			JSONObject res = new JSONObject();
+			while (rs.next()) {
+				res.put("UserID", rs.getObject("USER_MD5ID"));
+				res.put("nickname",rs.getObject("USER_NICKNAME"));
+				res.put("icon",rs.getObject("USER_ICON"));
+				res.put("followersNum",rs.getObject("USER_FOLLOWERSNUM"));
+				res.put("followingNum",rs.getObject("USER_FOLLOWINGNUM"));
+			}
+			return res;
+		} catch (SQLException e) {
 			return null;
 		}
 	}

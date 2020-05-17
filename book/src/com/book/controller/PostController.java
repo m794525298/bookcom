@@ -7,17 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.book.common.Coder;
 import com.book.service.PostService;
 
 
 @WebServlet("/Post")
 public class PostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private PostService service;
+    private PostService postService;
     
     public PostController() {
         super();
-        this.service = new PostService();
+        this.postService = new PostService();
     }
 
 	
@@ -28,12 +29,7 @@ public class PostController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = new String(request.getParameter("Id"));
-		String account = new String(request.getParameter("Account").getBytes("ISO-8859-1"),"UTF-8");
-		if (service.validUser(id,account)) {
-			response.getWriter().append("500 Internal Server Error");
-			return;
-		}
+		
 	}
 
 }

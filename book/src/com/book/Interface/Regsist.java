@@ -1,5 +1,7 @@
 package com.book.Interface;
 
+import com.alibaba.fastjson.JSONObject;
+
 public interface Regsist {
-	public int regsist(String account, String password,String email) ;
+	public JSONObject regsist(String account,String username,String password,String email);
 }

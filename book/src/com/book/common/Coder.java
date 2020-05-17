@@ -11,19 +11,16 @@ import sun.misc.BASE64Decoder;
 
 public class Coder {
 	public static final String KEY_MD5 = "BookCom";
-	public static String encryptedPassword(String password) throws NoSuchAlgorithmException {
-		MessageDigest md5 = MessageDigest.getInstance(KEY_MD5);
-        md5.update(password.getBytes());
-		return new String(md5.digest());
-	}
-	
-	public static String encryptedId(int id){
-		return String.valueOf(id*10078+9);
-		
-	}
-	
-	public static String decryptedId(String id) {
-		return String.valueOf((Integer.valueOf(id)-9)/10078);
+	public static String encrypted(String s){
+		MessageDigest md5;
+		try {
+			md5 = MessageDigest.getInstance(KEY_MD5);
+			md5.update(s.getBytes());
+			return new String(md5.digest());
+		} catch (NoSuchAlgorithmException e) {
+			return s;
+		}
+        
 	}
 	
 	public static String textToBase64(String str, String charsetName)
