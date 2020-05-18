@@ -16,7 +16,7 @@ static Statement st;
 	}
 	
 	public static int insertPost(PostBean post,String userId,String userAccount) {
-		if (!UserDao.validUser(userId, userAccount)) return 1;
+		if (!UserDao.validUser(userId)) return 1;
 		try {
 			String sql="insert into Post(POST_POSTTITLE,POST_PUBLISHERID,POST_CONTENT,POST_COVER,BOOK_ID) values(?,?,?,?,?)";//sql语句
 			PreparedStatement pstmt=DataBaseConnector.getPreparedStatement(sql);
@@ -35,7 +35,7 @@ static Statement st;
 	}
 	
 	public static int deletePost(String postId,String userId,String userAccount) {
-		if (!UserDao.validUser(userId, userAccount)) return 1;
+		if (!UserDao.validUser(userId)) return 1;
 		try {
 			ResultSet rs = st.executeQuery("Select POST_TITLE from post where POST_id =" + postId + ", POST_PUBLISHERID =" + userId + " And POST_ISEXIST = 1"+";");
 			if (!rs.wasNull()) return 1;
@@ -57,5 +57,21 @@ static Statement st;
 		}
 	}
 	
+	public static ResultSet searchPost(String keyword) {
+		try {
+			ResultSet rs = st.executeQuery("Select * from post where POST_TITLE like  \'%"+keyword+"\'%' And POST_ISEXIST = 1;");
+			return rs;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
 	
+	public static ResultSet searchPost(String keyword,String bookType) {
+		try {
+			ResultSet rs = st.executeQuery("Select * from post where POST_TITLE like  \'%"+keyword+"\'%',BookType = "+ bookType +"And POST_ISEXIST = 1;");
+			return rs;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
 }

@@ -27,9 +27,9 @@ public class UserDao {
 		}
 	}
 	
-	public static ResultSet getUser(String id,String account) {
+	public static ResultSet getUser(String id) {
 		try {
-			ResultSet rs = st.executeQuery("Select * from user where USER_ID =" + id +  "And USER_ACCOUNT = " + account + ";");
+			ResultSet rs = st.executeQuery("Select * from user where USER_ID =" + id +   ";");
 			return rs;
 		} catch (SQLException e) {
 			return null;
@@ -62,9 +62,9 @@ public class UserDao {
 		}
 	}
 	
-	public static boolean validUser(String id,String account) {
+	public static boolean validUser(String id) {
 		try {
-			ResultSet rs = st.executeQuery("Select USER_NICKNAME from user where USER_ID =" + id + "And USER_ACCOUNT = " + account + ";");
+			ResultSet rs = st.executeQuery("Select USER_NICKNAME from user where USER_MD5ID =" + id + ";");
 			return !rs.wasNull();
 		} catch (SQLException e) {
 			return false;
@@ -79,6 +79,15 @@ public class UserDao {
 			return 0;
 		} catch (SQLException e) {
 			return 1;
+		}
+	}
+	
+	public static String searchUserNickName(String id) {
+		try {
+			ResultSet rs = st.executeQuery("Select USER_NICKNAME from user where USER_MD5ID =" + id + ";");
+			return rs.getString("USER_NICKNAME");
+		} catch (SQLException e) {
+			return null;
 		}
 	}
 }

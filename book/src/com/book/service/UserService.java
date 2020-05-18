@@ -18,9 +18,9 @@ public class UserService implements User{
 	
 	
 
-	public JSONObject getUser(String id,String account) {
+	public JSONObject getUser(String id) {
 		JSONObject res = new JSONObject();
-		ResultSet rs = UserDao.getUser(id,account);
+		ResultSet rs = UserDao.getUser(id);
 		try {
 			if (rs.wasNull()) return null;
 			ResultSetMetaData md;
@@ -50,8 +50,8 @@ public class UserService implements User{
 
 
 	@Override
-	public boolean validUser(String id, String account) {
-		return UserDao.validUser(id,account);
+	public boolean validUser(String id) {
+		return UserDao.validUser(id);
 	}
 
 
@@ -61,4 +61,6 @@ public class UserService implements User{
 		String path = "/Icon/" + id +".jpg";
 		return	Coder.saveBase64Image(path, icon);
 	}
+
+
 }

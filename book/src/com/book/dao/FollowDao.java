@@ -13,9 +13,9 @@ static Statement st;
 		st = DataBaseConnector.getStatement();
 	}
 	
-	public int follow(String userId,String account,String followerId) {
+	public int follow(String userId,String followerId) {
 		
-		if (!UserDao.validUser(userId, account)) return 1;
+		if (!UserDao.validUser(userId)) return 1;
 		try {
 			
 			String sql="insert into follow(FOLLOW_FOLLOWING,FOLLOW_FOLLOWERS) values(?,?)";//sql语句
@@ -34,8 +34,8 @@ static Statement st;
 		}
 	}
 	
-	public int disFollow(String userId,String account,String followerId) {
-		if (!UserDao.validUser(userId, account)) return 1;
+	public int disFollow(String userId,String followerId) {
+		if (!UserDao.validUser(userId)) return 1;
 		try {
 			
 			String sql="delete from follow where FOLLOW_FOLLOWING = "+userId + " And FOLLOW_FOLLOWINERS = " + followerId + ";";//sql语句
