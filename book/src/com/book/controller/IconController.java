@@ -1,8 +1,6 @@
 package com.book.controller;
 
 import java.io.IOException;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,34 +8,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSONObject;
-import com.book.service.FollowService;
+import com.book.service.UserService;
 
 /**
- * Servlet implementation class disfollowController
+ * Servlet implementation class IconController
  */
-@WebServlet("/Disfollow")
-public class DisfollowController extends HttpServlet {
+@WebServlet("/Icon")
+public class IconController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private FollowService service;
+    private UserService service;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DisfollowController() {
+    public IconController() {
         super();
-        this.service = new FollowService();
+        this.service = new UserService();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Map<String,String[]> map = request.getParameterMap();
+		String userId = request.getParameter("userID");
+		String icon = request.getParameter("icon");
 		JSONObject rs = new JSONObject();
-		if (service.follow(map.get("userID")[0], map.get("followingUser")[0]) == 0) {
-			rs.put("success", true);
-		}else {
-			rs.put("success", false);
-		}
+		String path = service.updatedIcon(userId, icon);
+		rs.put("path",path);
 		response.getWriter().write(rs.toJSONString());
 	}
 

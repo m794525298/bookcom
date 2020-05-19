@@ -59,13 +59,49 @@ public class PostService implements Post {
 					posts.add(post.toString());
 					i++;
 				}
-				json.put("person", posts);
+				json.put("posts", posts);
 				return json;
 		} catch (SQLException e) {
 				return null;
 		}
 			
 		
+	}
+
+	@Override
+	public JSONObject searchPostByUser(String keyword, String page) {
+		ResultSet rs = PostDao.searchPostByNickName(keyword);
+		return getSearchJSON(rs,page);
+	}
+
+	@Override
+	public JSONObject getHotPost(String page) {
+		ResultSet rs = PostDao.getHotPost(page);
+		int count = PostDao.getPostNum();
+		int totalPage = (count%10 != 0)?count/10+1:count/10;
+		int num = (Integer.valueOf(page) != totalPage)?10:count%10;
+		JSONObject json = new JSONObject();
+		json.put("totalPage", totalPage);
+		json.put("num",num);
+		List<String> posts = new LinkedList<String>();
+		try {
+			while(rs.next()) {
+				JSONObject post = new JSONObject();
+					post.put("postID",rs.getString("POST_ID"));
+					post.put("title",rs.getString("POST_TITLE"));
+					post.put("content",rs.getString("POST_CONTENT"));
+					post.put("publisher",rs.getString("POST_PUBLISHER"));
+					post.put("cover",rs.getString("POST_COVER"));
+					post.put("time",rs.getDate("POST_TIME"));
+					post.put("publisherName",UserDao.getUser(rs.getString("POSE_PUBLISEHERID")));
+					post.put("commentNum",rs.getString("POST_COMMENTNUM"));
+				posts.add(post.toString());
+			}
+		} catch (SQLException e) {
+			return null;
+		}
+		json.put("posts", posts);
+		return json;
 	}
 	
 }

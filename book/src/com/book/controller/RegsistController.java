@@ -28,17 +28,18 @@ public class RegsistController extends HttpServlet{
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		doPost(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String account = map.get("account")[0];
 		String username = (map.containsKey("username"))?map.get("username")[0]:account;
 		String password = Coder.encrypted(map.get("password")[0]);
 		String email = map.get("email")[0];
 		JSONObject rs = service.regsist(account,username,password,email); 
+		
 		response.getWriter().write(rs.toJSONString());
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 

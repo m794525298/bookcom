@@ -25,6 +25,12 @@ public class LoginController extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		map = request.getParameterMap();
 		JSONObject rs = service.login(map.get("account")[0], map.get("password")[0]);
 		if (rs.isEmpty()) {
@@ -33,11 +39,6 @@ public class LoginController extends HttpServlet{
 			rs.put("match", "true");
 		}
 		response.getWriter().write(rs.toJSONString());
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 

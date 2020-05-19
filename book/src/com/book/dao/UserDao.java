@@ -71,10 +71,10 @@ public class UserDao {
 		}
 	}
 	
-	public static int updatedUserData(UserBean user) {
+	public static int updatedUserData(String userId,String userName) {
 		//0:成功 1:數据庫錯誤
 		try {
-			String sql="updated user set USER_NICKNAME = " +user.getNickname()+ " And USER_ICON = "+ user.getIcon()+"where USER_ID = "+ user.getId()+";";//sql语句
+			String sql="updated user set USER_NICKNAME = " +userName+ "where USER_MD5ID = "+ userId +";";//sql语句
 			st.executeUpdate(sql);
 			return 0;
 		} catch (SQLException e) {
@@ -82,12 +82,35 @@ public class UserDao {
 		}
 	}
 	
-	public static String searchUserNickName(String id) {
+	public static String searchUserNickNameById(String id) {
 		try {
 			ResultSet rs = st.executeQuery("Select USER_NICKNAME from user where USER_MD5ID =" + id + ";");
 			return rs.getString("USER_NICKNAME");
 		} catch (SQLException e) {
 			return null;
+		}
+	}
+	
+	public static int updatedUserIcon(String userId,String icon) {
+		try {
+			String sql="updated user set USER_ICON = "+ icon +"where USER_MD5ID = "+ userId +";";//sql语句
+			st.executeUpdate(sql);
+			return 0;
+		} catch (SQLException e) {
+			return 1;
+		}
+	}
+	
+	public static int updatedUserPassword(String userId,String oldPassword,String newPassword) {
+		//0:成功 1:數据庫錯誤
+		try {
+			ResultSet rs = st.executeQuery("Select USER_ID from user where USER_MD5ID =" + userId + "And USER_PASSWORD ="+oldPassword+";");
+			if (rs.getRow() == 0) return 1;
+			String sql="updated user set USER_PASSWORD = " +newPassword+ "where USER_MD5ID = "+ userId +";";//sql语句
+			st.executeUpdate(sql);
+			return 0;
+		} catch (SQLException e) {
+			return 1;
 		}
 	}
 }

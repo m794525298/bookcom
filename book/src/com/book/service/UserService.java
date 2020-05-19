@@ -38,13 +38,9 @@ public class UserService implements User{
 
 
 	@Override
-	public int updatedUser(String id, String icon, String nickname) {
-		UserBean user = new UserBean();
-		user.setId(id);
-		user.setIcon(icon);
-		user.setNickname(nickname);
-		int code = UserDao.updatedUserData(user);
-		return code;
+	public boolean updatedUser(String id, String nickname) {
+		int code = UserDao.updatedUserData(id,nickname);
+		return (code == 0)?true:false;
 	}
 
 
@@ -55,11 +51,34 @@ public class UserService implements User{
 	}
 
 
-
-	@Override
-	public boolean saveIcon(String id , String icon) {
+	private boolean saveIcon(String id , String icon) {
 		String path = "/Icon/" + id +".jpg";
 		return	Coder.saveBase64Image(path, icon);
+	}
+
+
+
+	@Override
+	public String updatedIcon(String id, String icon) {
+		saveIcon(id,icon);
+		if (UserDao.updatedUserIcon(id,"/Icon/" + id +".jpg") == 0){
+			return "/Icon/" + id +".jpg";
+		}else {
+			return null;
+		}
+		
+	}
+
+
+
+	@Override
+	public boolean updatedUserPassword(String id, String oldPassword, String newPassword) {
+		if (UserDao.updatedUserPassword(id, oldPassword, newPassword) == 0) {
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 
 

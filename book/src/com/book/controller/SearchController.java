@@ -26,23 +26,23 @@ public class SearchController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Map <String , String[]> map = request.getParameterMap();
-		String page = (map.containsKey("page"))?map.get("page")[0]:"1";
-		String keyword = map.get("keyword")[0];
-		String bookType = (map.containsKey("bookType"))?map.get("bookType")[0]:"";
-		String searchType = map.get("searchType")[0];
-		JSONObject rs;
-		if (searchType.equals("0")) {
-			rs = (bookType.isEmpty())?postService.searchPostByKeyword(keyword, page):postService.searchPostByKeyword(keyword, bookType, page);
-		}else {
-			
-		}
-		
+		doPost(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		Map <String , String[]> map = request.getParameterMap();
+		String page = (map.containsKey("page"))?map.get("page")[0]:"1";
+		String keyword = map.get("keywords")[0];
+		String bookType = (map.containsKey("bookType") && !map.get("bookType")[0].equals("null"))?map.get("bookType")[0]:"";
+		String searchType = (map.containsKey("searchType")&& !map.get("searchType")[0].equals("null"))?map.get("searchType")[0]:"0";
+		JSONObject rs;
+		if (searchType.equals("0")) {
+			rs = (bookType.equals(""))?postService.searchPostByKeyword(keyword, page):postService.searchPostByKeyword(keyword, bookType, page);
+		}else {
+			rs = postService.searchPostByUser(keyword, page);
+		}
+		response.getWriter().write(rs.toJSONString());
 	}
 
 }

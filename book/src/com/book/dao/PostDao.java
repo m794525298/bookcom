@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.alibaba.fastjson.JSONObject;
 import com.book.common.DataBaseConnector;
 import com.book.pojo.PostBean;
 
@@ -57,6 +58,8 @@ static Statement st;
 		}
 	}
 	
+	
+	
 	public static ResultSet searchPost(String keyword) {
 		try {
 			ResultSet rs = st.executeQuery("Select * from post where POST_TITLE like  \'%"+keyword+"\'%' And POST_ISEXIST = 1;");
@@ -68,10 +71,40 @@ static Statement st;
 	
 	public static ResultSet searchPost(String keyword,String bookType) {
 		try {
-			ResultSet rs = st.executeQuery("Select * from post where POST_TITLE like  \'%"+keyword+"\'%',BookType = "+ bookType +"And POST_ISEXIST = 1;");
+			ResultSet rs = st.executeQuery("Select * from post where POST_TITLE like  \'%"+keyword+"\'%' and BookType = "+ bookType +"And POST_ISEXIST = 1;");
 			return rs;
 		} catch (SQLException e) {
 			return null;
 		}
 	}
+	
+	public static ResultSet searchPostByNickName(String keyword) {
+		try {
+			ResultSet rs = st.executeQuery("Select post.* from post,user where post.POST_PUBLISHERID = user.USER_MD5ID and user.USER_NICKNAME like \'%"+keyword+"%\' And POST_ISEXIST = 1;");
+			return rs;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
+	public static ResultSet getHotPost(String page) {
+		try {
+			int count = getPostNum();
+			int totalPage = (count%10 != 0)?count/10+1:count/10;
+			int start = (Integer.valueOf(page) != totalPage)?count-count%10:Integer.valueOf(page)*10-9;
+			ResultSet rs = st.executeQuery("Select * from post where POST_ISEXIST = 1 Order by POST_COMMENTNUM limit "+start+","+(start+10)+";");
+			return rs;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
+	public static int getPostNum() {
+		try {
+			return st.executeQuery("Select count(POST_ID) as count from post where POST_ISEXIST = 1;").getInt("count");
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
+	
 }

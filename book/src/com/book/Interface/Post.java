@@ -8,5 +8,6 @@ public interface Post {
 	public int updatedPost(Post ppost);
 	public JSONObject searchPostByKeyword(String keyword,String bookType,String page);
 	public JSONObject searchPostByKeyword(String keyword,String page);
-	
+	public JSONObject searchPostByUser(String keyword,String page);
+	public JSONObject getHotPost(String page);
 }
