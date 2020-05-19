@@ -6,8 +6,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.Base64.Decoder;
+import java.util.Base64.Encoder;
 
-import sun.misc.BASE64Decoder;
 
 public class Coder {
 	public static final String KEY_MD5 = "BookCom";
@@ -41,11 +42,11 @@ public class Coder {
 	public static boolean saveBase64Image(String Path,String imgStr) {
 		if (imgStr == null) //图像数据为空  
             return false;
-		BASE64Decoder decoder = new BASE64Decoder();  
+		Decoder decoder = Base64.getDecoder();
 		try   
         {  
             //Base64解码  
-            byte[] b = decoder.decodeBuffer(imgStr);  
+            byte[] b = decoder.decode(imgStr);  
             for(int i=0;i<b.length;++i)  
             {  
                 if(b[i]<0)  

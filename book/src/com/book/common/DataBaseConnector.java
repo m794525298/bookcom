@@ -1,13 +1,6 @@
 package com.book.common;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Properties;
 
 public class DataBaseConnector {
 	private static Connection conn;
@@ -18,7 +11,7 @@ public class DataBaseConnector {
 			setConnection();
 			sm = conn.createStatement();
 		} catch (ClassNotFoundException | SQLException e) {
-			System.exit(1);
+			System.out.println(e);
 		}
 	}
 	
@@ -39,20 +32,9 @@ public class DataBaseConnector {
 	}
 	
 	public static void setConnection() {
-		Map<String,String> map = new HashMap<String,String>();
 		try {
-			InputStreamReader in = new InputStreamReader(new FileInputStream("/WebContent/WEB-INF/database.properties"));
-			Properties prop = new Properties();
-			prop.load(in);
-			Iterator<String> it = prop.stringPropertyNames().iterator();
-			
-			while(it.hasNext()) {
-				String key = it.next();
-				map.put(key, prop.getProperty(key));
-			}
-			
-			conn = DriverManager.getConnection(map.get("url"),map.get("name"),map.get("password"));
-		} catch (IOException | SQLException e) {
+			conn = DriverManager.getConnection("jdbc:mysql://cdb-nvpev74d.gz.tencentcdb.com:10078/book","root","Ab123123");
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
          
