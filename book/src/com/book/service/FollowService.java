@@ -15,4 +15,9 @@ public class FollowService implements Follow {
 		return FollowDao.disFollow(userId,followingUser);
 	}
 
+	@Override
+	public boolean isFollow(String userId, String followingUser) {
+		return FollowDao.isFollow(userId, followingUser);
+	}
+
 }

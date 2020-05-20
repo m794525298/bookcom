@@ -10,12 +10,7 @@ import com.book.common.DataBaseConnector;
 import com.book.pojo.PostBean;
 
 public class PostDao {
-static Statement st;
-	
-	static{
-		st = DataBaseConnector.getStatement();
-	}
-	
+
 	public static int insertPost(PostBean post,String userId,String userAccount) {
 		if (!UserDao.validUser(userId)) return 1;
 		try {
@@ -35,23 +30,26 @@ static Statement st;
 		
 	}
 	
-	public static int deletePost(String postId,String userId,String userAccount) {
-		if (!UserDao.validUser(userId)) return 1;
+	public static boolean deletePost(String postId,String userId) {
+		if (!UserDao.validUser(userId)) return false;
+		Statement st = DataBaseConnector.getStatement();
 		try {
-			ResultSet rs = st.executeQuery("Select POST_TITLE from post where POST_id =" + postId + ", POST_PUBLISHERID =" + userId + " And POST_ISEXIST = 1"+";");
-			if (!rs.wasNull()) return 1;
-			String sql="updated user set POST_ISEXIST = 0 where POST_ID = +"+postId+";";//sql语句
-			st.executeUpdate(sql);
-			return 0;
+			ResultSet rs = st.executeQuery("Select POST_POSTTITLE from post where POST_ID ='" + postId + "'And POST_PUBLISHERID ='" + userId + "' And POST_ISEXIST = 0;");
+			if (!rs.next()) return false;
+			String sql="update post set POST_ISEXIST = 1 where POST_ID = '"+postId+"';";//sql语句
+			DataBaseConnector.getStatement().executeUpdate(sql);
+			return true;
 		} catch (SQLException e) {
-			return 1;
+			System.out.println(e);
+			return false;
 		}
 		
 	}
 	
 	public static ResultSet getPostByUser(String userId) {
+		Statement st = DataBaseConnector.getStatement();
 		try {
-			ResultSet rs = st.executeQuery("Select * from post where POST_PUBLISHERID =" + userId +" And POST_ISEXIST = 1;");
+			ResultSet rs = st.executeQuery("Select * from post where POST_PUBLISHERID =" + userId +" And POST_ISEXIST = 0;");
 			return rs;
 		} catch (SQLException e) {
 			return null;
@@ -61,8 +59,9 @@ static Statement st;
 	
 	
 	public static ResultSet searchPost(String keyword) {
+		Statement st = DataBaseConnector.getStatement();
 		try {
-			ResultSet rs = st.executeQuery("Select * from post where POST_TITLE like  \'%"+keyword+"\'%' And POST_ISEXIST = 1;");
+			ResultSet rs = st.executeQuery("Select * from post where POST_POSTTITLE like  '%"+keyword+"%' And POST_ISEXIST = 0;");
 			return rs;
 		} catch (SQLException e) {
 			return null;
@@ -70,8 +69,9 @@ static Statement st;
 	}
 	
 	public static ResultSet searchPost(String keyword,String bookType) {
+		Statement st = DataBaseConnector.getStatement();
 		try {
-			ResultSet rs = st.executeQuery("Select * from post where POST_TITLE like  \'%"+keyword+"\'%' and BookType = "+ bookType +"And POST_ISEXIST = 1;");
+			ResultSet rs = st.executeQuery("Select * from post where POST_POSTTITLE like  '%"+keyword+"%' and BookType = "+ bookType +"And POST_ISEXIST = 0;");
 			return rs;
 		} catch (SQLException e) {
 			return null;
@@ -79,8 +79,9 @@ static Statement st;
 	}
 	
 	public static ResultSet searchPostByNickName(String keyword) {
+		Statement st = DataBaseConnector.getStatement();
 		try {
-			ResultSet rs = st.executeQuery("Select post.* from post,user where post.POST_PUBLISHERID = user.USER_MD5ID and user.USER_NICKNAME like \'%"+keyword+"%\' And POST_ISEXIST = 1;");
+			ResultSet rs = st.executeQuery("Select post.* from post,user where post.POST_PUBLISHERID = user.USER_MD5ID and user.USER_NICKNAME like '%"+keyword+"%' And POST_ISEXIST = 0;");
 			return rs;
 		} catch (SQLException e) {
 			return null;
@@ -88,11 +89,12 @@ static Statement st;
 	}
 	
 	public static ResultSet getHotPost(String page) {
+		Statement st = DataBaseConnector.getStatement();
 		try {
 			int count = getPostNum();
 			int totalPage = (count%10 != 0)?count/10+1:count/10;
-			int start = (Integer.valueOf(page) != totalPage)?count-count%10:Integer.valueOf(page)*10-9;
-			ResultSet rs = st.executeQuery("Select * from post where POST_ISEXIST = 1 Order by POST_COMMENTNUM limit "+start+","+(start+10)+";");
+			int start = (Integer.valueOf(page) != totalPage)?count-count%10:Integer.valueOf(page)*10-10;
+			ResultSet rs = st.executeQuery("Select * from post where POST_ISEXIST = 0 Order by POST_COMMENTNUM limit "+start+","+(start+10)+";");
 			return rs;
 		} catch (SQLException e) {
 			return null;
@@ -100,10 +102,23 @@ static Statement st;
 	}
 	
 	public static int getPostNum() {
+		Statement st = DataBaseConnector.getStatement();
 		try {
-			return st.executeQuery("Select count(POST_ID) as count from post where POST_ISEXIST = 1;").getInt("count");
+			ResultSet rs = st.executeQuery("Select POST_ID as count from post where POST_ISEXIST = 0;");
+			rs.last();
+			return rs.getRow();
 		} catch (SQLException e) {
 			return 0;
+		}
+	}
+	
+	public static ResultSet getPostDetail(String postId) {
+		Statement st = DataBaseConnector.getStatement();
+		try {
+			ResultSet rs = st.executeQuery("Select * from post where POST_ID = "+postId+" And POST_ISEXIST = 0;");
+			return rs;
+		} catch (SQLException e) {
+			return null;
 		}
 	}
 	

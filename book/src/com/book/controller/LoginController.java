@@ -25,20 +25,29 @@ public class LoginController extends HttpServlet{
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		doPost(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		JSONObject rs = new JSONObject();
 		map = request.getParameterMap();
-		JSONObject rs = service.login(map.get("account")[0], map.get("password")[0]);
-		if (rs.isEmpty()) {
+		if (!map.containsKey("account") || map.get("account")[0].equals("")) {
 			rs.put("match", "false");
+			response.getWriter().write(rs.toJSONString());
+		}else if (!map.containsKey("password") || map.get("password")[0].equals("")) {
+			rs.put("match", "false");
+			response.getWriter().write(rs.toJSONString());
 		}else {
-			rs.put("match", "true");
+			rs = service.login(map.get("account")[0], map.get("password")[0]);
+			if (rs.isEmpty()) {
+				rs.put("match", "false");
+			}else {
+				rs.put("match", "true");
+				
+			}
+			response.getWriter().write(rs.toJSONString());
 		}
-		response.getWriter().write(rs.toJSONString());
 	}
 
 

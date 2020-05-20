@@ -1,8 +1,6 @@
 package com.book.controller;
 
 import java.io.IOException;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,13 +11,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.book.service.PostService;
 
 /**
- * Servlet implementation class HotPostController
+ * Servlet implementation class DeletePostController
  */
-@WebServlet("/HotPost")
-public class HotPostController extends HttpServlet {
+@WebServlet("/DeletePost")
+public class DeletePostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private PostService service;
-    public HotPostController() {
+    public DeletePostController() {
         super();
         this.service = new PostService();
     }
@@ -28,9 +26,8 @@ public class HotPostController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Map<String,String[]> map = request.getParameterMap();
-		String page = (!map.containsKey("page") ||map.get("page")[0].equals("null"))?"1":map.get("page")[0];
-		JSONObject rs = service.getHotPost(page);
+		JSONObject rs = new JSONObject();
+		rs.put("success",service.deletePost(request.getParameter("userID"),request.getParameter("postID")));
 		response.getWriter().write(rs.toJSONString());
 	}
 

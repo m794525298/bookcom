@@ -8,4 +8,10 @@ public interface User {
 	public boolean validUser(String id);
 	public String updatedIcon(String id,String Icon);
 	public boolean updatedUserPassword(String id,String oldPassword,String newPassword);
+	public boolean validEmail(String email);
+	public boolean validAccount(String account);
+	public boolean updatedUserPasswordByEmail(String email,String newPassword);
+	public JSONObject getUserName(String id);
+	public JSONObject getHotUser();
+	public JSONObject getOtherUser(String id);
 }

@@ -3,6 +3,8 @@ package com.book.service;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
 import com.book.Interface.User;
@@ -22,7 +24,8 @@ public class UserService implements User{
 		JSONObject res = new JSONObject();
 		ResultSet rs = UserDao.getUser(id);
 		try {
-			if (rs.wasNull()) return null;
+			if (!rs.next()) return null;
+			rs.previous();
 			ResultSetMetaData md;
 			md = rs.getMetaData();
 			int columnCount = md.getColumnCount();
@@ -52,7 +55,8 @@ public class UserService implements User{
 
 
 	private boolean saveIcon(String id , String icon) {
-		String path = "/Icon/" + id +".jpg";
+		String path = System.getProperty("user.home")+"/book/book/Icon/" + id +".jpg";
+		System.out.println(path);
 		return	Coder.saveBase64Image(path, icon);
 	}
 
@@ -62,7 +66,7 @@ public class UserService implements User{
 	public String updatedIcon(String id, String icon) {
 		saveIcon(id,icon);
 		if (UserDao.updatedUserIcon(id,"/Icon/" + id +".jpg") == 0){
-			return "/Icon/" + id +".jpg";
+			return "Icon/" + id +".jpg";
 		}else {
 			return null;
 		}
@@ -79,6 +83,95 @@ public class UserService implements User{
 			return false;
 		}
 		
+	}
+
+
+
+	@Override
+	public boolean validEmail(String email) {
+		return (UserDao.checkEmail(email) == 0)?true:false;
+	}
+
+
+
+	@Override
+	public boolean updatedUserPasswordByEmail(String email, String newPassword) {
+		if (UserDao.updatedUserPasswordByEmail(email, newPassword) == 0) {
+			return true;
+		}
+		return false;
+	}
+
+
+
+	@Override
+	public JSONObject getUserName(String id) {
+		JSONObject jo = new JSONObject();
+		ResultSet rs = UserDao.getUserName(id);
+		try {
+			if (!rs.next()) return null;
+			rs.previous();
+			while(rs.next()) {
+				jo.put("username",rs.getString("USER_NICKNAME"));
+			}
+			return jo;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+
+
+
+	@Override
+	public JSONObject getHotUser() {
+		ResultSet rs = UserDao.getHotUser();
+		JSONObject jo = new JSONObject();
+		try {
+			rs.last();
+			jo.put("num", rs.getRow());
+			rs.beforeFirst();
+			List<JSONObject> list = new LinkedList<JSONObject>();
+			while(rs.next()) {
+				JSONObject temp = new JSONObject();
+				temp.put("userID", rs.getString("USER_MD5ID"));
+				temp.put("icon" , rs.getString("USER_ICON"));
+				temp.put("username", rs.getString("USER_NICKNAME"));
+				temp.put("followersNum", rs.getString("USER_FOLLOWERSNUM"));
+				list.add(temp);
+			}
+			jo.put("list",list);
+			return jo;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+
+
+
+	@Override
+	public boolean validAccount(String account) {
+		return (UserDao.checkAccount(account)==0)?true:false;
+	}
+
+
+
+	@Override
+	public JSONObject getOtherUser(String id) {
+		JSONObject res = new JSONObject();
+		ResultSet rs = UserDao.getUser(id);
+		
+		try {
+			if (!rs.next()) return null;
+			rs.previous();
+			while(rs.next()) {
+			res.put("userID", rs.getString("USER_MD5ID"));
+			res.put("icon", rs.getString("USER_ICON"));
+			res.put("username", rs.getString("USER_NICKNAME"));
+			}
+			return res;
+		} catch (SQLException e) {
+			return null;
+		}
 	}
 
 

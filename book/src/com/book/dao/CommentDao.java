@@ -10,4 +10,5 @@ static Statement st;
 	static{
 		st = DataBaseConnector.getStatement();
 	}
+	
 }

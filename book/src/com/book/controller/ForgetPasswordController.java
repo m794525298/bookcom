@@ -1,8 +1,6 @@
 package com.book.controller;
 
 import java.io.IOException;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,27 +8,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSONObject;
-import com.book.service.PostService;
+import com.book.service.UserService;
 
 /**
- * Servlet implementation class HotPostController
+ * Servlet implementation class ForgetPasswordController
  */
-@WebServlet("/HotPost")
-public class HotPostController extends HttpServlet {
+@WebServlet("/ForgetPassword")
+public class ForgetPasswordController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private PostService service;
-    public HotPostController() {
+    private UserService service;
+    public ForgetPasswordController() {
         super();
-        this.service = new PostService();
+        this.service = new UserService();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Map<String,String[]> map = request.getParameterMap();
-		String page = (!map.containsKey("page") ||map.get("page")[0].equals("null"))?"1":map.get("page")[0];
-		JSONObject rs = service.getHotPost(page);
+		String email = request.getParameter("email");
+		String newPassword = request.getParameter("newPassword");
+		JSONObject rs = new JSONObject();
+		System.out.println("breakPoint");
+		if (service.updatedUserPasswordByEmail(email, newPassword)) {
+			rs.put("success",true);
+		}else {
+			rs.put("success",false);
+		}
 		response.getWriter().write(rs.toJSONString());
 	}
 

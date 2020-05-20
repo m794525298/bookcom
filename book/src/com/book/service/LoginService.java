@@ -18,8 +18,10 @@ public class LoginService implements Login{
 	public JSONObject login(String account, String password) {
 		ResultSet rs;
 		try {
-			rs = UserDao.login(account, Coder.encrypted(password));
+			rs = UserDao.login(account, password);
 			JSONObject res = new JSONObject();
+			if (!rs.next()) return null;
+			rs.previous();
 			while (rs.next()) {
 				res.put("UserID", rs.getObject("USER_MD5ID"));
 				res.put("nickname",rs.getObject("USER_NICKNAME"));
@@ -29,6 +31,7 @@ public class LoginService implements Login{
 			}
 			return res;
 		} catch (SQLException e) {
+			System.out.println(e);
 			return null;
 		}
 	}
