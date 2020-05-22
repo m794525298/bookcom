@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSONObject;
+import com.book.common.Coder;
 import com.book.service.UserService;
 
 /**
@@ -26,9 +27,7 @@ public class CheckAccountController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		JSONObject rs = new JSONObject();
-		rs.put("exist", service.validAccount(request.getParameter("account")));
-		response.getWriter().write(rs.toJSONString());
+		doPost(request, response);
 	}
 
 	/**
@@ -36,7 +35,10 @@ public class CheckAccountController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		JSONObject rs = new JSONObject();
+		rs.put("exist", String.valueOf(service.validAccount(request.getParameter("account"))));
+		response.getWriter().write(rs.toJSONString());
+		System.out.println(rs);
 	}
 
 }

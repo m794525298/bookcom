@@ -29,7 +29,7 @@ public class HotPostController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String,String[]> map = request.getParameterMap();
-		String page = (!map.containsKey("page") ||map.get("page")[0].equals("null"))?"1":map.get("page")[0];
+		String page = (!map.containsKey("page") || map.get("page")[0].equals(""))?"1":map.get("page")[0];
 		JSONObject rs = service.getHotPost(page);
 		response.getWriter().write(rs.toJSONString());
 	}

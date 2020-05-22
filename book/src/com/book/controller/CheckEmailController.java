@@ -28,9 +28,9 @@ public class CheckEmailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		JSONObject rs = new JSONObject();
 		if (service.validEmail(request.getParameter("email"))){
-			rs.put("exist", true);
+			rs.put("exist", "true");
 		}else {
-			rs.put("exist", false);
+			rs.put("exist", "false");
 		}
 		response.getWriter().write(rs.toJSONString());
 	}

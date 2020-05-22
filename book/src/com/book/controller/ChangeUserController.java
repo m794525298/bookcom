@@ -33,9 +33,9 @@ public class ChangeUserController extends HttpServlet {
 		String userName = request.getParameter("userName");
 		JSONObject rs = new JSONObject();
 		if (service.updatedUser(userId, userName)) {
-			rs.put("success",true);
+			rs.put("success","true");
 		}else {
-			rs.put("success",false);
+			rs.put("success","false");
 		}
 		response.getWriter().write(rs.toJSONString());
 	}
