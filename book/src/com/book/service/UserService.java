@@ -66,7 +66,7 @@ public class UserService implements User{
 	public String updatedIcon(String id, String icon) {
 		saveIcon(id,icon);
 		if (UserDao.updatedUserIcon(id,"/Icon/" + id +".jpg") == 0){
-			return "Icon/" + id +".jpg";
+			return "localhost:8080/book/Icon/" + id +".jpg";
 		}else {
 			return null;
 		}
