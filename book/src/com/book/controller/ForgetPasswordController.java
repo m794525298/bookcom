@@ -29,11 +29,10 @@ public class ForgetPasswordController extends HttpServlet {
 		String email = request.getParameter("email");
 		String newPassword = request.getParameter("newPassword");
 		JSONObject rs = new JSONObject();
-		System.out.println("breakPoint");
 		if (service.updatedUserPasswordByEmail(email, newPassword)) {
-			rs.put("success",true);
+			rs.put("success",true+"");
 		}else {
-			rs.put("success",false);
+			rs.put("success",false+"");
 		}
 		response.getWriter().write(rs.toJSONString());
 	}

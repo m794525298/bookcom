@@ -55,8 +55,7 @@ public class UserService implements User{
 
 
 	private boolean saveIcon(String id , String icon) {
-		String path = System.getProperty("user.home")+"/book/book/Icon/" + id +".jpg";
-		System.out.println(path);
+		String path = System.getProperty("user.home")+"/book/book/WebContent/Icon/" + id +".png";
 		return	Coder.saveBase64Image(path, icon);
 	}
 
@@ -65,8 +64,8 @@ public class UserService implements User{
 	@Override
 	public String updatedIcon(String id, String icon) {
 		saveIcon(id,icon);
-		if (UserDao.updatedUserIcon(id,"/Icon/" + id +".jpg") == 0){
-			return "localhost:8080/book/Icon/" + id +".jpg";
+		if (UserDao.updatedUserIcon(id, "Icon/" + id +".png") == 0){
+			return "Icon/" + id +".png";
 		}else {
 			return null;
 		}

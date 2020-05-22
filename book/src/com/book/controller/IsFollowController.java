@@ -29,7 +29,7 @@ public class IsFollowController extends HttpServlet {
 		String userId = request.getParameter("userID");
 		String followingUser = request.getParameter("followingUser");
 		JSONObject rs = new JSONObject();
-		rs.put("following",service.isFollow(userId, followingUser));
+		rs.put("following",service.isFollow(userId, followingUser)+"");
 		response.getWriter().write(rs.toJSONString());
 	}
 

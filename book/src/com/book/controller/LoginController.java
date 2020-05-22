@@ -28,6 +28,7 @@ public class LoginController extends HttpServlet{
 		doPost(request, response);
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		JSONObject rs = new JSONObject();
 		map = request.getParameterMap();
@@ -44,9 +45,10 @@ public class LoginController extends HttpServlet{
 				rs.put("match", "false");
 			}else {
 				rs.put("match", "true");
+				
 			}
+			System.out.println(rs.toJSONString());
 			response.getWriter().write(rs.toJSONString());
-			System.out.println(rs);
 		}
 	}
 

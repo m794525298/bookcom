@@ -161,8 +161,8 @@ public class UserDao {
 		try {
 			Statement st = DataBaseConnector.getStatement();
 			ResultSet rs = st.executeQuery("Select USER_MD5ID from user where USER_ACCOUNT ='" + account +"';");
-			if (rs.next()) return 1;
-			return 0;
+			if (rs.next()) return 0;
+			return 1;
 		} catch (SQLException e) {
 			return 1;
 		}

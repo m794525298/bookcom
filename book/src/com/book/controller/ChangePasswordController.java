@@ -32,11 +32,14 @@ public class ChangePasswordController extends HttpServlet {
 		String userId = request.getParameter("userID");
 		String oldPassword = request.getParameter("oldPassword");
 		String newPassword = request.getParameter("newPassword");
+		System.out.println(userId);
+		System.out.println(oldPassword);
+		System.out.println(newPassword);
 		JSONObject rs = new JSONObject();
 		if (service.updatedUserPassword(userId, oldPassword, newPassword)) {
-			rs.put("success", "true");
+			rs.put("success", true+"");
 		}else {
-			rs.put("success", "false");
+			rs.put("success", false+"");
 		}
 		response.getWriter().write(rs.toJSONString());
 	}

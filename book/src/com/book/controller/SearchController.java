@@ -1,6 +1,7 @@
 package com.book.controller;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.Base64;
 import java.util.Map;
 
@@ -32,22 +33,27 @@ public class SearchController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
 		Map <String , String[]> map = request.getParameterMap();
-		String page = (map.containsKey("page"))?map.get("page")[0]:"1";
-		String keyword =(map.containsKey("key"))? new String(Base64.getDecoder().decode(map.get("keywords")[0].getBytes())):"";
-		String bookType = (map.containsKey("bookType") && !map.get("bookType")[0].equals("null"))?map.get("bookType")[0]:"";
+		String page = (map.containsKey("page") && !map.get("page")[0].equals("null") && !map.get("page")[0].equals(""))?map.get("page")[0]:"1";
+		System.out.println(URLDecoder.decode(request.getParameter("keywords"),"UTF-8"));
+		String keyword =(map.containsKey("keywords"))? URLDecoder.decode(request.getParameter("keywords"),"UTF-8"):"";
+		String bookType = (map.containsKey("bookType") && !map.get("bookType")[0].equals(""))?map.get("bookType")[0]:"";
 		String searchType = "0";
 		if (map.containsKey("searchType")&& !map.get("searchType")[0].equals("null")) {
 			if (map.get("searchType")[0].equals("0") ||map.get("searchType")[0].equals("1")){
 				searchType =map.get("searchType")[0];
 			}
 		}
+		
 		JSONObject rs = new JSONObject();
 		if (searchType.equals("0")) {
 			rs = (bookType.equals(""))?postService.searchPostByKeyword(keyword, page):postService.searchPostByKeyword(keyword, bookType, page);
 		}else {
 			rs = postService.searchPostByUser(keyword, page);
 		}
+		System.out.println(rs.toJSONString());
 		response.getWriter().write(rs.toJSONString());
 	}
 

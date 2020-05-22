@@ -28,6 +28,7 @@ public class PostDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(request.getParameter("postID"));
 		response.getWriter().write(service.getPostDetail(request.getParameter("postID")).toJSONString());
 	}
 

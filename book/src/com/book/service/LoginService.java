@@ -23,11 +23,14 @@ public class LoginService implements Login{
 			if (!rs.next()) return null;
 			rs.previous();
 			while (rs.next()) {
-				res.put("UserID", rs.getObject("USER_MD5ID"));
-				res.put("nickname",rs.getObject("USER_NICKNAME"));
-				res.put("icon",rs.getObject("USER_ICON"));
-				res.put("followersNum",rs.getObject("USER_FOLLOWERSNUM"));
-				res.put("followingNum",rs.getObject("USER_FOLLOWINGNUM"));
+				res.put("userID", rs.getString("USER_MD5ID"));
+				res.put("account", rs.getString("USER_ACCOUNT"));
+				res.put("email", rs.getString("USER_EMAIL"));
+				res.put("username",rs.getString("USER_NICKNAME"));
+				res.put("identity",rs.getString("USER_IDENTITY"));
+				res.put("icon",rs.getString("USER_ICON"));
+				res.put("followersNum",rs.getString("USER_FOLLOWERSNUM"));
+				res.put("followingNum",rs.getString("USER_FOLLOWINGNUM"));
 			}
 			return res;
 		} catch (SQLException e) {

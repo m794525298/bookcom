@@ -34,9 +34,9 @@ public class DisfollowController extends HttpServlet {
 		Map<String,String[]> map = request.getParameterMap();
 		JSONObject rs = new JSONObject();
 		if (service.disfollow(map.get("userID")[0], map.get("followingUser")[0]) == 0) {
-			rs.put("success", true);
+			rs.put("success", true+"");
 		}else {
-			rs.put("success", false);
+			rs.put("success", false+"");
 		}
 		response.getWriter().write(rs.toJSONString());
 	}

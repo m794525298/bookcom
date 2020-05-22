@@ -33,11 +33,25 @@ public class FollowController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String,String[]> map = request.getParameterMap();
 		JSONObject rs = new JSONObject();
-		if (service.follow(map.get("userID")[0], map.get("followingUser")[0]) == 0) {
-			rs.put("success", true);
+		String userId =map.get("userID")[0];
+		String followingUser = map.get("followingUser")[0];
+		System.out.println(userId);
+		System.out.println(followingUser);
+		if (service.isFollow(userId, followingUser)) {
+			if (service.disfollow(map.get("userID")[0], map.get("followingUser")[0]) == 0)
+			{
+				rs.put("success", true+"");
+			}else {
+				rs.put("success", false+"");
+			}
 		}else {
-			rs.put("success", false);
-		}
+			if ( service.follow(map.get("userID")[0], map.get("followingUser")[0]) == 0)
+			{
+				rs.put("success", true+"");
+			}else {
+				rs.put("success", false+"");
+			}
+		} 
 		response.getWriter().write(rs.toJSONString());
 	}
 

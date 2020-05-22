@@ -35,14 +35,20 @@ public class PostService implements Post {
 		JSONObject json = new JSONObject();
 		int totalPage;
 		try {
+				if (!rs.next()) {
+					json.put("totalPage",0+"");
+					json.put("num",0+"");
+					json.put("posts", "[]");
+					return json;
+				}
 				rs.last();
 				totalPage = rs.getRow()/10;
 				if (rs.getRow()%10 != 0) totalPage++;
 				int num = (totalPage != Integer.valueOf(page))?10:rs.getRow()%10;
 				if (rs.getRow()<10) num = rs.getRow();
 				int i = 0;
-				json.put("totalPage",totalPage);
-				json.put("num",num);
+				json.put("totalPage",totalPage+"");
+				json.put("num",num+"");
 				rs.relative(Integer.valueOf(page)*10 - num);
 				
 				List<JSONObject> posts = new LinkedList<JSONObject>();
@@ -51,11 +57,14 @@ public class PostService implements Post {
 					if (i == num) break;
 					JSONObject post = new JSONObject();
 					post.put("postID",rs.getString("POST_ID"));
-					post.put("title",rs.getString("POST_POSTTITLE"));
+					post.put("postTitle",rs.getString("POST_POSTTITLE"));
 					post.put("content",rs.getString("POST_CONTENT"));
 					post.put("publisher",rs.getString("POST_PUBLISHERID"));
 					post.put("cover",rs.getString("POST_COVER"));
 					post.put("time",rs.getString("POST_TIME"));
+					post.put("bookType", rs.getString("POST_BOOKTYPE"));
+					post.put("bookTitle", rs.getString("POST_BOOKTITLE"));
+					post.put("author", rs.getString("POST_BOOKAUTHOR"));
 					ResultSet temp = UserDao.getUserName(rs.getString("POST_PUBLISHERID"));
 					String publisherName = "";
 					while(temp.next()) {
@@ -66,7 +75,7 @@ public class PostService implements Post {
 					posts.add(post);
 					i++;
 				}
-				json.put("post", posts);
+				json.put("posts", posts);
 				return json;
 		} catch (SQLException e) {
 				System.out.println(e);
@@ -117,6 +126,7 @@ public class PostService implements Post {
 				rs.put("icon",userSet.getString("USER_ICON"));
 				rs.put("publisherName",userSet.getString("USER_NICKNAME"));
 			}
+			System.out.println(rs.toJSONString());
 			return rs;
 		} catch (SQLException e) {
 			return null;

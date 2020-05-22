@@ -60,8 +60,14 @@ public class PostDao {
 	
 	public static ResultSet searchPost(String keyword) {
 		Statement st = DataBaseConnector.getStatement();
+		String sql;
 		try {
-			ResultSet rs = st.executeQuery("Select * from post where POST_POSTTITLE like  '%"+keyword+"%' And POST_ISEXIST = 0;");
+			if (keyword.isEmpty()) {
+				sql = "Select * from post where POST_ISEXIST = 0;";
+			}else {
+				sql ="Select * from post where POST_POSTTITLE like  '%"+keyword+"%' And POST_ISEXIST = 0;";
+			}
+			ResultSet rs = st.executeQuery(sql);
 			return rs;
 		} catch (SQLException e) {
 			return null;
@@ -70,10 +76,17 @@ public class PostDao {
 	
 	public static ResultSet searchPost(String keyword,String bookType) {
 		Statement st = DataBaseConnector.getStatement();
+		String sql;
 		try {
-			ResultSet rs = st.executeQuery("Select * from post where POST_POSTTITLE like  '%"+keyword+"%' and BookType = "+ bookType +"And POST_ISEXIST = 0;");
+			if (keyword.isEmpty()) {
+				sql = "Select * from post where POST_BOOKTYPE = "+ bookType +" And POST_ISEXIST = 0;";
+			}else {
+				sql =" Select * from post where POST_POSTTITLE like  '%"+keyword+"%' and POST_BOOKTYPE = "+ bookType +" And POST_ISEXIST = 0;";
+			}
+			ResultSet rs = st.executeQuery(sql);
 			return rs;
 		} catch (SQLException e) {
+			System.out.println(e);
 			return null;
 		}
 	}
@@ -84,6 +97,7 @@ public class PostDao {
 			ResultSet rs = st.executeQuery("Select post.* from post,user where post.POST_PUBLISHERID = user.USER_MD5ID and user.USER_NICKNAME like '%"+keyword+"%' And POST_ISEXIST = 0;");
 			return rs;
 		} catch (SQLException e) {
+			System.out.println(e);
 			return null;
 		}
 	}

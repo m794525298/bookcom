@@ -34,22 +34,11 @@ public class ChangeIconController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userID");
-		BufferedReader br = new BufferedReader(new InputStreamReader((ServletInputStream) request.getInputStream(), "utf-8"));
-		StringBuffer sb = new StringBuffer("");
-		String temp;
-		while ((temp = br.readLine()) != null) {
-		    sb.append(temp);
-		}
-		br.close();
-		temp = sb.toString();
-		int i=temp.indexOf("name=\"Icon\"");
-		temp=temp.substring(i+11);
-		i = temp.indexOf("-");
-		temp=temp.substring(0,i);
-		String icon = temp;
+		String icon = request.getParameter("icon");
 		JSONObject rs = new JSONObject();
 		String path = service.updatedIcon(userId, icon);
 		rs.put("path",path);
+		System.out.println(path);
 		response.getWriter().write(rs.toJSONString());
 	}
 
