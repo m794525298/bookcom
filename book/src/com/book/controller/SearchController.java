@@ -37,8 +37,7 @@ public class SearchController extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		Map <String , String[]> map = request.getParameterMap();
 		String page = (map.containsKey("page") && !map.get("page")[0].equals("null") && !map.get("page")[0].equals(""))?map.get("page")[0]:"1";
-		System.out.println(URLDecoder.decode(request.getParameter("keywords"),"UTF-8"));
-		String keyword =(map.containsKey("keywords"))? URLDecoder.decode(request.getParameter("keywords"),"UTF-8"):"";
+		String keyword =(map.containsKey("keywords"))?new String(Base64.getDecoder().decode(map.get("keywords")[0]),"UTF-8"):"";
 		String bookType = (map.containsKey("bookType") && !map.get("bookType")[0].equals(""))?map.get("bookType")[0]:"";
 		String searchType = "0";
 		if (map.containsKey("searchType")&& !map.get("searchType")[0].equals("null")) {

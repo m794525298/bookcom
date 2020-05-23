@@ -1,6 +1,8 @@
 package com.book.controller;
 
 import java.io.IOException;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,12 +25,15 @@ public class UserPostController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().write(service.getPostByUserID(request.getParameter("userID"),request.getParameter("page")).toJSONString());
+		Map<String,String[]> map = request.getParameterMap();
+		
+		String page = (!map.containsKey("page")||map.get("page")[0].equals(""))?"1":map.get("page")[0];
+		response.getWriter().write(service.getPostByUserID(request.getParameter("userID"),page).toJSONString());
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doGet(request,response);
 	}
 
 }
