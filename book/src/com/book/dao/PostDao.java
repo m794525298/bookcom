@@ -34,7 +34,7 @@ public class PostDao {
 		if (!UserDao.validUser(userId)) return false;
 		Statement st = DataBaseConnector.getStatement();
 		try {
-			ResultSet rs = st.executeQuery("Select POST_POSTTITLE from post where POST_ID ='" + postId + "'And POST_PUBLISHERID ='" + userId + "' And POST_ISEXIST = 0;");
+			ResultSet rs = st.executeQuery("Select POST_POSTTITLE from post where POST_ID ='" + postId + "' And POST_PUBLISHERID ='" + userId + "' And POST_ISEXIST = 0;");
 			if (!rs.next()) return false;
 			String sql="update post set POST_ISEXIST = 1 where POST_ID = '"+postId+"';";//sql语句
 			DataBaseConnector.getStatement().executeUpdate(sql);
@@ -49,9 +49,11 @@ public class PostDao {
 	public static ResultSet getPostByUser(String userId) {
 		Statement st = DataBaseConnector.getStatement();
 		try {
-			ResultSet rs = st.executeQuery("Select * from post where POST_PUBLISHERID =" + userId +" And POST_ISEXIST = 0;");
+			System.out.println(userId);
+			ResultSet rs = st.executeQuery("Select * from post where POST_PUBLISHERID ='" + userId +"' And POST_ISEXIST = 0;");
 			return rs;
 		} catch (SQLException e) {
+			System.out.println(e);
 			return null;
 		}
 	}
