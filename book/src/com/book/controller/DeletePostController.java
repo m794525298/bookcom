@@ -27,7 +27,7 @@ public class DeletePostController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		JSONObject rs = new JSONObject();
-		rs.put("success",service.deletePost(request.getParameter("userID"),request.getParameter("postID")));
+		rs.put("success",service.deletePost(request.getParameter("userID"),request.getParameter("postID"))+"");
 		response.getWriter().write(rs.toJSONString());
 	}
 
