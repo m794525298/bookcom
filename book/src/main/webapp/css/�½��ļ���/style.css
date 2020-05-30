@@ -1,0 +1,138 @@
+.wrapper{
+ width: 980px;
+ height: auto;
+ 
+ margin: 0 auto;
+ /*border: 1px solid #000;*/
+}
+body{
+ background-image: url(../QQ图片20200412194002.jpg);
+}
+/*第一行开始*/
+.row_one{
+ height: 85px;
+}
+/*右边的背景图片*/
+
+.rightimg1{
+ width: 108px;
+ background-position: 0 -64px;
+}
+.rightimg2{
+ width: 105px;
+ background-position: -3px -32px;
+}
+.rightimg3{
+ width: 100px;
+ background-position: -5px 0;
+}
+/*第一行结束*/
+/*第二行开始*/
+.row_two{
+ height: 465px;
+}
+.two_left{
+ width: 422px;
+ height: 370px;
+ background-image: url(../img/signPic.jpg.png);
+ margin: 65px 0 0 0;
+ float: left;
+}
+.tow_right{
+ width: 340px;
+ height: 385px;
+ /*border: 1px solid #000;*/
+ float: right;
+ margin: 25px 17px 0 0;
+ box-shadow: #CCCCCC -2px 2px 3px 1px}
+.tow_right>form>div{
+ padding: 0px 29px 0 20px;
+ margin: 13px 0 0 0;
+ height: 40px;
+ line-height: 40px;
+}
+form input{
+ font-size: 16px;
+ border: 1px solid #CCCCCC;
+ padding-left: 5px;
+}
+.form1 div{
+ float: left;
+ font-size: 24px;
+ color: #fe0404;
+}
+.form1 span{
+ float: right;
+ font-size: 12px;
+ color: #ccc;
+}
+.form1 span a{
+ color: #fe0404;
+}
+.form2 input,.form4 input,.form5 input{
+ width: 288px;
+ height: 38px;
+}
+.form3 input{
+ width: 144px;
+ height: 34px;
+}
+.form3 a{
+ width: 118px;
+ height: 34px;
+ border: 1px solid #CCCCCC;
+ float: right;
+ margin: 3px -3px 0 0;
+ background-color: #ddd;
+ text-align: center;
+ line-height: 34px;
+ color: #00f;
+ font-weight: bold;
+ font-size: 12px;
+}
+.form6 .btm{
+ width: 295px;
+    height: 38px;
+    background-color: #f8296d;
+    border: none;
+    font-size: 16px;
+    color: #fff;
+}
+.form7 a{
+ color: #f8296d;
+ font-size: 14px;
+}
+/*第二行结束*/
+/*第三行开始*/
+.row_three{
+ text-align: center;
+ font-size: 12px;
+}
+/*第三行结束*/
+/*第四行开始*/
+.row_four{
+ height:52px ;
+}
+.left_img1,.left_img2,.left_img3,.left_img4{
+ float: left;
+ width:125px;
+ height: 51px;
+ background-image: url(../QQ图片20200412194002.jpg);
+ margin-top: 15px;
+}
+.left_img2,.left_img3,.left_img4{
+ margin-left: 65px;
+}
+.left_img1{
+ background-position:0 -96px;
+ margin-left: 140px;
+}
+.left_img2{
+ background-position:0 -148px;
+}
+.left_img3{
+ background-position:0 -198px;
+}
+.left_img4{
+ background-position:0 -249px;
+}

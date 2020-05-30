@@ -1,0 +1,24 @@
+.main{
+    width:60%;
+    margin-left:20%;
+    margin-top:15px;
+    display:none;
+}
+.main .icon_bot{
+    width:210px;
+    height:210px;
+    float:left;
+
+}
+.main p{
+  margin-top:15px;
+  margin-left:20px;
+  float:left;
+  border-right: 1px solid #dbdbdb;
+}
+.main p span{
+  font-size:20px;
+}
+.main input{
+  border: 2px solid #dbdbdb;
+}
