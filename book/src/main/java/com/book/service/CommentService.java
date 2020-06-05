@@ -105,12 +105,13 @@ public class CommentService implements Comment{
 				for(num = 0, rs.previous(); rs.next() && num < limit;) {
 					JSONObject comment = new JSONObject();
 					CommentBean commentBean = CommentDao.admin_selectByID(rs.getString("COMMENT_ID"));
+					if(commentBean.getPublisherId().equals(userId)) {
+						continue;
+					}
 					
 					if(commentBean.getParentId() != null) {
 						CommentBean commentParent = CommentDao.admin_selectByID(commentBean.getParentId());
-						if(commentParent.getPublisherId().equals(userId)) {
-							continue;
-						}
+						
 						if(commentParent.getIsExist().equals("0")) {
 							comment.put("commentParentContent", commentParent.getContent());
 							comment.put("commentParentPublisher", commentParent.getPublisherId());

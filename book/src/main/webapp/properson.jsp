@@ -274,7 +274,7 @@
 
 					$(".post_res_body").append(
 									'<div class="post_res_comment">'+
-									'<a href='+href+'>'+postTitle+'</a><span>12121212\</span><span>'+content+'</span><span>'+commentNum+'</span>'+
+									'<a href='+href+'>'+postTitle+'</a><span>'+time+'</span><span>'+content+'</span><span>'+commentNum+'</span>'+
 								'</div>')
 				
 				}

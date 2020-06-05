@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9d2e82de-8829-4c5d-97b0-9076b5148a19" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/book_war.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/book_war_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_68.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Cover/58.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Icon/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Icon/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Icon/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Icon/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Icon/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Icon/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Icon/7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/book/common/DataBaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/book/common/DataBaseConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/book/common/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/book/common/EmailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/book/controller/UserPageCommentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/book/controller/UserPageCommentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/book/dao/CommentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/book/dao/CommentDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/book/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/book/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/book/manage/DoUserAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/book/manage/DoUserAdd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/book/manage/DoUserDelete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/book/manage/DoUserDelete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/book/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/book/service/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/book/service/RegsistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/book/service/RegsistService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Icon/182be0c5cdcd5072.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Icon/182be0c5cdcd5072.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/manage/admin_menu.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/manage/admin_menu.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/personal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/personal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/properson.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/properson.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/book/controller/UserPageCommentsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/book/controller/UserPageCommentsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/book/dao/CommentDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/book/dao/CommentDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/book/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/book/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/book/service/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/book/service/CommentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/book/service/RegsistService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/book/service/RegsistService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/cn.whu.SE.student/book/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/cn.whu.SE.student/book/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../document/~$需求分析.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../document/~WRL1544.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../document/业务流程图.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../document/书友网需求分析说明书.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../document/展示.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../document/数据流图.xsd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../document/用例图.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../document/需求捕获.docx" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1cqmna90kdUOn4opcLKupujaamX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9d2e82de-8829-4c5d-97b0-9076b5148a19" name="Default Changelist" comment="" />
+      <created>1591264665833</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591264665833</updated>
+      <workItem from="1591264670838" duration="3301000" />
+      <workItem from="1591325778089" duration="20000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="647" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1591325778037">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="647" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591325778037" />
+  </component>
+</project>

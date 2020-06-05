@@ -46,7 +46,7 @@ public class RegsistService implements Regsist{
     	if(res != null) {
     		int size = res.size();
 			for(int i = 0; i < size; ++i)
-				if(captcha.equals(res.get(i)));
+				if(captcha.equals(res.get(i)))
 					return true;
     	}
     	

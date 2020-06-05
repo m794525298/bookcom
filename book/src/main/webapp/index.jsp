@@ -214,11 +214,11 @@ $(function(){
 			var icon=data.list[i].icon;
 			var username=data.list[i].username;
 			var followersNum=data.list[i].followersNum;
-			
+
 			var href="properson.jsp?userID="+userID;
 			$(".all_recommend").append("<div class='recommend'>"+
 			"<div class='pic'>"+
-			"<a href="+href+"><img src='img/flo1.jpg'></a>"+
+			"<a href="+href+"><img src="+icon+"></a>"+
 		"</div>	"+
 			"<div class='name_area'><a class='user_name' href="+href+">"+username+"</a></div>"+
 		"<div class='num_area'>"+
@@ -228,6 +228,8 @@ $(function(){
 			"<br><br/>"+
 		"</div>"+
 	"</div>");
+			
+			
 			
 			/* $(".s_title").eq(i).empty().append(title);
 			$(".s_title").eq(i).attr("href",post_href);

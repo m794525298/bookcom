@@ -32,7 +32,6 @@ public class DoUserDelete extends HttpServlet {
 		String userID = request.getParameter("id");
 
 		int res = UserDao.admin_delete(userID);
-		System.out.println(res);
 
 		// 判然后转发请求
 		if (res == 0) {

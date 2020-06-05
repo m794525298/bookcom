@@ -42,7 +42,7 @@ public class DataBaseConnector {
 	
 	public static Connection setConnection() {
 		try {
-//			conn = 
+			conn = ;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

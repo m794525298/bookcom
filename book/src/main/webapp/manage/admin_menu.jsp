@@ -21,9 +21,8 @@
         </div>
         <div class="top-info-wrap">
             <ul class="top-info-list clearfix">
-                
-               
-                <li><a href="admin_login.jsp">退出</a></li>
+                <li><a href="">管理员: ${username }</a></li>
+                <li><a href="admin_logout">退出</a></li>
             </ul>
         </div>
     </div>

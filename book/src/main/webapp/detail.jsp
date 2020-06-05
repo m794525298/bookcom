@@ -75,7 +75,7 @@
 			<form id="myForm" onsubmit="return false";>
 				<div class="response">
 					<div class="response_to_area">
-						<a>response to:</a><a class="response_to"></a>
+						<a>response to:&nbsp&nbsp</a><a class="response_to"></a>
 					</div>
 					<div>
 						<textarea id="textarea" maxlength="120"

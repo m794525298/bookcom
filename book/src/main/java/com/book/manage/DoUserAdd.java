@@ -45,7 +45,7 @@ public class DoUserAdd extends HttpServlet {
 			
 			out.write("<script>");
 			out.write("alert('添加失败');");
-			out.write("location.href='admin_useradd.jsp'");
+			out.write("window.history.go(-1)");
 
 			out.write("</script>");
 		}

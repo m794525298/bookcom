@@ -41,10 +41,10 @@ public class EmailSender {
             outWrite("auth login");                     // prepare for login in
             System.out.println(in.readLine());
 
-            outWrite(Coder.textToBase64("qwsa374293896@163.com"));         						// base64 of account
+            outWrite(Coder.textToBase64(""));         						// base64 of account
             System.out.println(in.readLine());
             
-            outWrite(Coder.textToBase64("TSVSWNMMIHUDHUYY"));    // base64 of authrize
+            outWrite(Coder.textToBase64(""));    // base64 of authrize
             System.out.println(in.readLine());
 
             outWrite("mail from: <qwsa374293896@163.com>");

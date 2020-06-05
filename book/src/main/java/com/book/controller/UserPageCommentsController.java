@@ -45,6 +45,8 @@ public class UserPageCommentsController extends HttpServlet {
 	
 		JSONObject json = service.getUserPageComments(userId);
 		
+		System.out.println(json);
+		
 		PrintWriter out = response.getWriter();
 		out.println(json.toJSONString());
 		out.flush();

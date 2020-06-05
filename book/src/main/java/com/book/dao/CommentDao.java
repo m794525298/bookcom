@@ -395,6 +395,8 @@ public class CommentDao {
 				pstmt.setString(2, comment.getParentId());
 				pstmt.setString(3, postPublisherId)	;
 				pstmt.setString(4, parentPublisherId);
+				System.out.println("arr1: " + postPublisherId);
+				System.out.println("arr2: " + parentPublisherId);
 				res = pstmt.executeUpdate();
 			}
 			
@@ -506,7 +508,7 @@ public class CommentDao {
 		
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		
+				
 		try {
 			String sql = "select COMMENT_ID from reply where COMMENT_POSTPUBLISHERID=? or COMMENT_PARENTPUBLISHERID=? limit ?, ?";
 			pstmt = DataBaseConnector.getConnection().prepareStatement(sql);

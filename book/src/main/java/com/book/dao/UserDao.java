@@ -573,7 +573,7 @@ public static UserBean admin_signIn(String account, String password) {
 	public static ResultSet getHotUser() {
 		try {
 			Statement st = DataBaseConnector.getStatement();
-			ResultSet rs = st.executeQuery("Select USER_MD5ID,USER_ICON,USER_NICKNAME,USER_FOLLOWERSNUM from user Order by USER_FOLLOWERSNUM limit 4;");
+			ResultSet rs = st.executeQuery("Select USER_MD5ID,USER_ICON,USER_NICKNAME,USER_FOLLOWERSNUM from user Order by USER_FOLLOWERSNUM desc limit 4;");
 			return rs;
 		} catch (SQLException e) {
 			return null;

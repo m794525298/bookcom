@@ -58,7 +58,7 @@
 					<div class="comment_body">
 						<div class="comment_res_mask">
 							<div class="comment_res_head">
-								<a>我的被回复评论</a><span>时间</span><span>他的评论内容</span><span>点击查看评论</span>
+								<a>我的被回复评论</a><span>发布时间</span><span>他的评论内容</span><span>点击查看评论</span>
 							</div>
 
 							<div class="comment_res_body"></div>
@@ -66,7 +66,7 @@
 						<div class="post_res_mask">
 
 							<div class="post_res_head">
-								<a>发布的帖子</a><span>时间</span><span>内容</span><span>讨论数</span>
+								<a>发布的帖子</a><span>发布时间</span><span>内容</span><span>讨论数</span>
 							</div>
 
 							<div class="post_res_body" style="">
@@ -256,7 +256,7 @@
 
 					$(".post_res_body").append(
 									'<div class="post_res_comment">'+
-									'<a href='+href+'>'+postTitle+'</a><span>12121212\</span><span>'+content+'</span><span>'+commentNum+'</span>'+
+									'<a href='+href+'>'+postTitle+'</a><span>'+time+'</span><span>'+content+'</span><span>'+commentNum+'</span>'+
 								'</div>')
 				
 				}
